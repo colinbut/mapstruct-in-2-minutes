@@ -6,7 +6,11 @@
 package com.mycompany.mapstruct.mapstructin2minutes.domain.entity;
 
 import com.mycompany.mapstruct.mapstructin2minutes.domain.enums.CarType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 public class CarEntity {
     private String make;
     private int numberOfSeats;

@@ -5,6 +5,7 @@ import com.mycompany.mapstruct.mapstructin2minutes.domain.enums.CarType;
 import com.mycompany.mapstruct.mapstructin2minutes.dto.CarDto;
 import com.mycompany.mapstruct.mapstructin2minutes.mapper.CarMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @Slf4j
 public class MapstructIn2MinutesApplication implements CommandLineRunner {
+
+    @Autowired
+    private CarMapper carMapper;
 
     public static void main(String[] args) {
         log.info("STARTING THE APPLICATION");
@@ -25,7 +29,7 @@ public class MapstructIn2MinutesApplication implements CommandLineRunner {
 
         CarEntity car = new CarEntity("Ford", 5, CarType.STOCK_CAR);
 
-        CarDto carDto = CarMapper.INSTANCE.carEntityToCarDto(car);
+        CarDto carDto = carMapper.carEntityToCarDto(car);
 
         log.info(carDto.toString());
 

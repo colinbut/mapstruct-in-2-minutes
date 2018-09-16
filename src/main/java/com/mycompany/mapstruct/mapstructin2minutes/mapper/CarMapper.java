@@ -9,16 +9,20 @@ import com.mycompany.mapstruct.mapstructin2minutes.domain.entity.CarEntity;
 import com.mycompany.mapstruct.mapstructin2minutes.dto.CarDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mappings;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CarMapper {
 
-    CarMapper INSTANCE = Mappers.getMapper(CarMapper.class);
-
-    @Mapping(source = "numberOfSeats", target = "seatCount")
+    @Mappings({
+        @Mapping(source = "numberOfSeats", target = "seatCount"),
+        @Mapping(source = "carType", target = "type")
+    })
     CarDto carEntityToCarDto(CarEntity carEntity);
 
-    @Mapping(source = "seatCount", target = "numberOfSeats")
+    @Mappings({
+        @Mapping(source = "seatCount", target = "numberOfSeats"),
+        @Mapping(source = "type", target = "carType")
+    })
     CarEntity carDtoToCarEntity(CarDto carDto);
 }
